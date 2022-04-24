@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tech Apple</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png'%}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  
+</head>
+
+
+<body>
+     <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="{% url 'employee_home' %}">
+                    <b class="logo-abbr"><img src="{% static 'images/logo.png'%}" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static './images/logo-compact.png'%}" alt=""></span>
+                    <span class="brand-title">
+                        <!--img src="{% static 'images/logo-text.png' %}" alt=""-->
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li><a href="{% url 'profile'  %}">PROFILE</a></li>
+                    <li><a href="{% url 'attendances' %}">MARK ATTENDANCE</a>
+                    </li>
+                    <li><a href="{% url 'message' %}"> SEND MESSAGE</a>
+                    </li>
+                    <li><a href="{% url 'user_attendance' %}">VIEW ATTENDANCE</a>
+                    </li>
+                    <li><a href="{% url 'send_message' %}">VIEW MESSAGE</a>
+                    </li>
+                </li>
+                <hr>
+                    <li><a href="{% url 'user_logout' %}">SIGNOUT</a>
+                    </li>    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <!--div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div-->
+            <!-- row -->
+            
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>ATTENDANCE</h3>
+                                <div class="form-validation">
+                                    <form class="form-valid" method="POST">
+                                        {% csrf_token %} 
+                                         
+                                        <div class="form-group row">
+                                            <div class="col-lg-4 col-form-label">
+                                                
+                                                   
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" hidden name="date" value="{{c.x.date}}">
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="card-title">
+                                                        <h4></h4>
+                                                    </div>
+                                                    
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                               
+                                                                <tr>
+                                                                    
+                                                                    <th>ID</th>
+                                                                    <th>Name</th>
+                                                                    <th>Attendance</th>
+                                                                    
+                                                                    
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    
+                                                                    <th><input type="text" class="form-control" readonly name="emp_id" value="{{c.d.emp_id}}" ></th>
+                                                                    <td><input type="text" class="form-control" readonly name="name" value="{{c.d.name}}" ></td>
+                                                                    <td><select class="form-control"  name="attendances" >
+                                                                        <option value="present" >PRESENT</option>
+                                                                        <option value="absent">ABSENT</option>
+                                                                       
+                                                                      </select></td>
+                                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <!-- /# card -->
+                                        </div>
+                                    
+                                    <div class="form-group row">
+                                        <div class="col-lg-8 ml-auto">
+                        
+                                            <input type="submit" value="SUBMIT" class="btn btn-primary">
+                                            
+                                            
+                                        </div>
+                                    </div> 
+                                    </form>  
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <!--div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div-->
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <script src="{% static 'plugins/common/common.min.js'%}"></script>
+    <script src="{% static 'js/custom.min.js'%}"></script>
+    <script src="{%  static 'js/settings.js'%}"></script>
+    <script src="{% static 'js/gleek.js'%}"></script>
+    <script src="{% static 'js/styleSwitcher.js'%}"></script>
+
+
+    <script src="{% static './plugins/jquery-steps/build/jquery.steps.min.js'%}"></script>
+    <script src="{% static './plugins/jquery-validation/jquery.validate.min.js'%}"></script>
+    <script src="{% static './js/plugins-init/jquery-steps-init.js'%}"></script>
+
+</body>
+
+</html>

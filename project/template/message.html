@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tech Apple</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <!-- Pignose Calender -->
+    <link href="{% static './plugins/pg-calendar/css/pignose.calendar.min.css'%}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{% static './plugins/chartist/css/chartist.min.css'%}">
+    <link rel="stylesheet" href="{% static './plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <link href="{% static './plugins/fullcalendar/css/fullcalendar.min.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="{% url 'employee_home' %}">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static './images/logo-compact.png'%}" alt=""></span>
+                    <span class="brand-title">
+                       <!--img src="{% static 'images/logo-text.png' %}" alt=""-->
+                    </span>
+                </a>
+            </div>
+        </div>
+        
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li><a href="{% url 'profile'  %}">PROFILE</a></li>
+                    <li><a href="{% url 'attendances' %}">MARK ATTENDANCE</a>
+                    </li>
+                    <li><a href="{% url 'message' %}"> SEND MESSAGE</a>
+                    </li>
+                    <li><a href="{% url 'user_attendance' %}">VIEW ATTENDANCE</a>
+                    </li>
+                    <li><a href="{% url 'send_message' %}">VIEW MESSAGE</a>
+                    </li>
+                </li>
+                <hr>
+                    <li><a href="{% url 'user_logout' %}">SIGNOUT</a>
+                    </li>    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="container-fluid mt-3">
+                
+                
+
+                <!--div class="col-md-8">
+                    <div class="card-box m-b-50">
+                        <div id="calendar"></div>
+                    </div>
+                </div-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form class="form-valid" method="POST">
+                                {% csrf_token %} 
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="#" class="form-profile">
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" hidden name="date" value="{{c.x}}">
+                                            </div>
+                                            <input type="text" class="form-control" hidden name="emp_id" value="{{c.d.emp_id}}" >
+                                            <input type="text" class="form-control" hidden name="name" value="{{c.d.name}}" >
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="msg" id="textarea" cols="30" rows="10" placeholder="Post a new message"></textarea>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                               
+                                                <button class="btn btn-primary px-3 ml-4">Send</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                        <!-- /# column -->
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <!--div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div-->
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js'%}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+    <!-- Chartjs -->
+    <script src="{% static './plugins/chart.js/Chart.bundle.min.js'%}"></script>
+    <!-- Circle progress -->
+    <script src="{% static './plugins/circle-progress/circle-progress.min.js'%}"></script>
+    <!-- Datamap -->
+    <script src="{% static './plugins/d3v3/index.js'%}"></script>
+    <script src="{% static './plugins/topojson/topojson.min.js'%}"></script>
+    <script src="{% static './plugins/datamaps/datamaps.world.min.js'%}"></script>
+    <!-- Morrisjs -->
+    <script src="{% static './plugins/raphael/raphael.min.js'%}"></script>
+    <script src="{% static './plugins/morris/morris.min.js'%}"></script>
+    <!-- Pignose Calender -->
+    <script src="{% static './plugins/moment/moment.min.js'%}"></script>
+    <script src="{% static './plugins/pg-calendar/js/pignose.calendar.min.js'%}"></script>
+    <!-- ChartistJS -->
+    <script src="{% static './plugins/chartist/js/chartist.min.js'%}"></script>
+    <script src="{% static './plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js'%}"></script>
+    <script src="{% static './plugins/fullcalendar/js/fullcalendar.min.js'%}"></script>
+    <script src="{% static './js/plugins-init/fullcalendar-init.js'%}"></script>
+
+
+    <script src="{% static './js/dashboard/dashboard-1.js'%}"></script>
+
+</body>
+
+</html>

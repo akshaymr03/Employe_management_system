@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tech Apple</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png'%}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  
+</head>
+
+
+<body>
+     <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="{% url 'employee_home' %}">
+                    <b class="logo-abbr"><img src="{% static 'images/logo.png'%}" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static './images/logo-compact.png'%}" alt=""></span>
+                    <span class="brand-title">
+                        <!--img src="{% static 'images/logo-text.png' %}" alt=""-->
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li><a href="{% url 'profile'  %}">PROFILE</a></li>
+                    <li><a href="{% url 'attendances' %}">MARK ATTENDANCE</a>
+                    </li>
+                    <li><a href="{% url 'message' %}"> SEND MESSAGE</a>
+                    </li>
+                    <li><a href="{% url 'user_attendance' %}">VIEW ATTENDANCE</a>
+                    </li>
+                    <li><a href="{% url 'send_message' %}">VIEW MESSAGE</a>
+                    </li>
+                </li>
+                <hr>
+                    <li><a href="{% url 'user_logout' %}">SIGNOUT</a>
+                    </li>    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <!--div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div-->
+            <!-- row -->
+            
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>PERSONAL DETAILS</h3><br>
+                                <div class="form-validation">
+                                    <form class="form-valid" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %} 
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">First Name<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="name" value="{{ form.name }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-currency">Data Of Birth<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" name="dob" value="{{ form.dob }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Email <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="email" class="form-control"  name="email" value="{{ form.email }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Gender<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="email" class="form-control"  name="gender" value="{{ form.gender }}" readonly>
+                                            </div>
+                                        </div>
+                                        <!--div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-email">Gender <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                {% if form.gender == 'MALE' %}
+                                        <div class="form-group">
+                                            <label class="radio-inline mr-3" style="float: left;">
+                                                <input type="radio" name="gender" checked="checked" value="MALE" style="float: left; margin-top:3px !important; margin-right:5px" readonly>MALE</label>
+                                            <label class="radio-inline mr-3"  style="float: left;">
+                                                <input type="radio" name="gender" value="FEMAL" style="float: left; margin-top:3px !important; margin-right:5px" readonly>FEMALE</label>
+                                            
+                                               
+                                        </div>
+                                        </div>
+                                        {% else %}
+                                        <div class="form-group">
+                                            <label class="radio-inline mr-3" style="float: left;">
+                                                <input type="radio" name="gender"  value="MALE" style="float: left; margin-top:3px !important; margin-right:5px" readonly>MALE</label>
+                                            <label class="radio-inline mr-3"  style="float: left;">
+                                                <input type="radio" name="gender" value="FEMAL" checked="checked" style="float: left; margin-top:3px !important; margin-right:5px" readonly>FEMALE</label>
+                                            
+                                               
+                                        </div>
+                                        </div>
+                                        {% endif %}
+                                        </div-->
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-suggestions">Addres <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" name="addres" value="{{ form.addres}}" readonly>
+                                                <!--textarea class="form-control"  name="addres" rows="5" placeholder="Enter your adress..." required></textarea-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-currency">Contact Number <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="number" class="form-control" name="numbers" value="{{ form.numbers }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-currency">Photo<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" name="photo" id="fileToUpload" value="{{ form.photo }}" readonly>
+                                                <a href="{{ form.photo.url }}">view</a>
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>EDUCATION DETAILS</h3><br>
+                                <div class="form-validation">
+                                    
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Degree<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" name="degree" value="{{ form.degree }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Name Of The Institution<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="institution" value="{{ form.institution }}" readonly>
+                                            </div>
+                                        </div>   
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>BANK DETAILS</h3><br>
+                                <div class="form-validation">
+                                    
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Account Number<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="acnumber" value="{{ form.acnumber }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Branch<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="branch" value="{{ form.branch }}" readonly>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">IFSC Code<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="ifsc" value="{{ form.ifsc}}" readonly>
+                                            </div>
+                                        </div>   
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>COMPANY DETAILS</h3><br>
+                                <div class="form-validation">
+                                    
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Employee ID<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="emp_id" value="{{ form.emp_id }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Department<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="depaetment" value="{{ form.depaetment }}" readonly>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Date Of Join<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="date_of_join" value="{{ form.date_of_join}}" readonly>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Position<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="position" value="{{ form.position}}" readonly>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Salary<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="salary" value="{{ form.salary}}" readonly>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Status<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="status" value="{{ form.status}}" readonly>
+                                            </div>
+                                            <!--div class="col-lg-6">
+                                                <select class="form-control"  name="status" >
+                                                    <option value="active">Active</option>
+                                                    <option value="inactive">Inactive</option>
+                                                   
+                                                  </select>
+                                            </div-->
+                                        </div>    
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Curriculum vitae<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" name="cv" value="{{ form.cv}}"readonly>
+                                                <a href="{{ form.cv.url }}">Download</a>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="val-username">Bound<span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="bound" value="{{ form.bound}}"readonly>
+                                                <a href="{{ form.bound.url }}">Download</a>
+                                            </div>
+                                        </div>   
+                                </div>
+
+                            </div>
+                        </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>OTHER DETAILS</h3><br>
+                            <div class="form-validation">
+                                
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="val-username">Experience<span class="text-danger"></span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control"  name="experience" value="{{ form.experience}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="val-username">Company Name<span class="text-danger"></span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control"  name="company_name" value="{{ form.company_name}}" readonly>
+                                        </div>
+                                    </div>   
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="val-username">Certificates<span class="text-danger"></span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control"  name="certificate" value="{{ form.certificate}}" readonly>
+                                            <a href="{{ form.cv.certificate }}">Download</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <div class="col-lg-8 ml-auto">
+                                            <input type="submit" value="DELETE" class="btn btn-primary">
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                    </div>   
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <!--div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div-->
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <script src="{% static 'plugins/common/common.min.js'%}"></script>
+    <script src="{% static 'js/custom.min.js'%}"></script>
+    <script src="{%  static 'js/settings.js'%}"></script>
+    <script src="{% static 'js/gleek.js'%}"></script>
+    <script src="{% static 'js/styleSwitcher.js'%}"></script>
+
+
+    <script src="{% static './plugins/jquery-steps/build/jquery.steps.min.js'%}"></script>
+    <script src="{% static './plugins/jquery-validation/jquery.validate.min.js'%}"></script>
+    <script src="{% static './js/plugins-init/jquery-steps-init.js'%}"></script>
+
+</body>
+
+</html>
